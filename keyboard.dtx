@@ -1,0 +1,150 @@
+% \iffalse
+%% File: keyboard.dtx by Dennis Heidsiek, mail: HeidsiekB at aol dot com
+%%
+%% You can get the latest version at http://github.com/zephyr/latex-keyboard
+%%
+%<*driver>
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+\input docstrip.tex
+\askforoverwritefalse
+\preamble
+
+THIS IS A AUTOMATICALLY GENERATED FILE CONTAINING EXPERIMENTAL CODE.
+
+Do not distribute this file without also distributing the source files specified above.
+
+Do not distribute a modified version of this file under the same name.
+
+\endpreamble
+\postamble
+\endpostamble
+\keepsilent
+\generate{\file{keyboard.sty}{\from{keyboard.dtx}{package}}}
+\generate{\file{keyboard-demo.tex}{\from{keyboard.dtx}{sample}}}
+
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+
+\documentclass{gmdocc}
+\def\marginpartt{\scriptsize\ttfamily}  % needed fix for XeTeX because of problems with the lmodern font.
+\GetFileInfo{keyboard.sty}
+
+\usepackage{
+  xltxtra,
+  polyglossia,
+  hyperref
+}
+\hypersetup{
+  pdfborder= 0 0 0,
+  colorlinks=true,
+  linkcolor=blue
+}
+\setmainlanguage{english}
+
+\newcommand{\email}[1]{\href{mailto:#1}{#1}} % Why is this not in hyperref?
+\newcommand{\githubuser}[4]{#1 \textsc{#2}\footnote{Follow or fork #1 at GitHub: \url{http://github.com/#3}}\\\email{#4}}
+
+\title{The |keyboard| package\footnote{\filenote}}
+
+\author{%
+\githubuser{Dennis}{Heidsiek}{zephir}{HeidsiekB@aol.com}
+}
+\begin{document}
+\maketitle
+\begin{abstract}
+This is the documentation of the \LaTeXe\ package |keyboard|. It provides a single command to typeset a special keyboard layout which has to be specified on a character base, using a |key=value| interface. If you find any incompatiblities with any package, please send me a e-mail and maybe I can take care of it.
+\end{abstract}
+
+\tableofcontents
+
+\section{Commands for the user}
+…
+
+\section{Implementation}
+\DocInput{keyboard.dtx}
+\end{document}
+%</driver>
+%
+%<*package>
+% \fi
+% Let us dive into the implementation:
+% \begin{macrocode}
+
+%\subsection{Requirements}
+\NeedsTeXFormat{LaTeX2e}
+% For the graphic stuff:
+\RequirePackage{tikz} 
+% For parsing |key=value| input:
+\RequirePackage{pgfkeys}
+
+%\subsection{Version}
+\ProvidesPackage{keyboard}
+  [2010/04/05 v0.1 provides keyboards, initial experimental version.]
+
+%\subsection{Data structures}
+% Define boolean macros for the state:
+
+% Explain how the |key=value| input should be processed and stored into the tree:
+\pgfkeys{
+  /keyboard/.cd,
+  k11/.store in = \keyboard@k11,
+  color/.store in = \keyboard@color,
+  colour/.style = {color=#1},
+  fillcolor/.store in = \keyboard@fillcolor,
+  fillcolour/.style = {fillcolor=#1},
+  drawcolor/.store in = \keyboard@drawcolor,
+  drawcolour/.style = {drawcolor=#1}
+}
+
+%\subsection{Package defaults}
+\pgfkeys{
+  /keyboard/.cd,
+  k11 = Strg,
+  color = black,
+  fillcolor = black!10,
+  drawcolor = black
+}
+
+% Applies all formatting to a given text:
+\newcommand*{\keyboard@apply}{%
+  %\keyboard@angle@apply{\keyboard@emph@apply{\keyboard@bold@apply{\keyboard@colour@apply{%
+    Keyboard=\keyboard@k11!%
+  %}}}}%
+}
+
+%\subsection{The main command}
+
+%Parsing |key=value| input:
+\newcommand*{\drawkeyboard}[1]{%
+  \pgfqkeys{/keyboard}{#1}
+  \keyboard@apply
+}
+
+% \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \iffalse
+%<*sample>
+\documentclass{article}
+\usepackage{xltxtra}
+\setmainfont{Linux Biolinum O}
+\usepackage{keyboard}
+
+\begin{document}
+\title{A short sample document for the \texttt{keyboard} package}
+\author{Dennis Heidsiek}
+\maketitle
+This is a keyboard:
+\drawkeyboard{color=pink}
+\end{document}
+%</sample>
+% \fi
+% \Finale
+% \endinput
