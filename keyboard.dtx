@@ -93,29 +93,131 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 % Explain how the |key=value| input should be processed and stored into the tree:
 \pgfkeys{
   /keyboard/.cd,
-  k11/.store in = \keyboard@k11,
+  basesize/.store in = \keyboard@bs,
   color/.store in = \keyboard@color,
   colour/.style = {color=#1},
   fillcolor/.store in = \keyboard@fillcolor,
   fillcolour/.style = {fillcolor=#1},
   drawcolor/.store in = \keyboard@drawcolor,
-  drawcolour/.style = {drawcolor=#1}
+  drawcolour/.style = {drawcolor=#1},
+  k11/.store in = \keyboard@k11
 }
 
 %\subsection{Package defaults}
 \pgfkeys{
   /keyboard/.cd,
+  basesize = 0.175cm, % the size of a single quadratic key
   k11 = Strg,
   color = black,
   fillcolor = black!10,
   drawcolor = black
 }
 
-% Applies all formatting to a given text:
+%subsection{Helper macros for drawing keys}
+
+% Typsets a single key, centered arround |x|, |y| of width |w|, height |h| with content |c|:
+\newcommand*{\keyboard@key}[5]{
+\draw (#1*\keyboard@bs,#2*\keyboard@bs)
+  node[draw, minimum width=#3*\keyboard@bs, minimum height=#4*\keyboard@bs, rectangle, fill=\keyboard@fillcolor, thick] {}
+  node[anchor=base, yshift=-0.7*\keyboard@bs] {#5}
+  ;
+}
+
+% Typsets a single normal quadratic key, centered arround |x|, |y| with content |c|:
+\newcommand{\keyboard@nkey}[3]{\keyboard@key{#1}{#2}{4}{4}{#3}}
+
+
+% Typsets the enter key with content |c|:
+\newcommand{\keyboard@enter}[1]{%
+\filldraw[color=\keyboard@color, fill=\keyboard@fillcolor, thick]
+ (54*\keyboard@bs,16*\keyboard@bs) --
+ (60*\keyboard@bs,16*\keyboard@bs) --
+ (60*\keyboard@bs,8*\keyboard@bs) --
+ (55*\keyboard@bs,8*\keyboard@bs) --
+ (55*\keyboard@bs,12*\keyboard@bs) --
+ (54*\keyboard@bs,12*\keyboard@bs) --
+ cycle node[anchor=base, color=\keyboard@color, xshift=3.5*\keyboard@bs, yshift=-0.5*\keyboard@bs] {#1} ;
+}
+
+
+% Draws a keyboard with the given parameters:
 \newcommand*{\keyboard@apply}{%
-  %\keyboard@angle@apply{\keyboard@emph@apply{\keyboard@bold@apply{\keyboard@colour@apply{%
-    Keyboard=\keyboard@k11!%
-  %}}}}%
+\begin{tikzpicture}%[scale=0.5, x=0.5cm,y=0.5cm, transform shape][scale=0.2, transform shape]
+% number row:
+\keyboard@nkey{2}{18}{}
+\keyboard@nkey{6}{18}{}
+\keyboard@nkey{10}{18}{}
+\keyboard@nkey{14}{18}{}
+\keyboard@nkey{18}{18}{}
+\keyboard@nkey{22}{18}{}
+\keyboard@nkey{26}{18}{}
+\keyboard@nkey{30}{18}{}
+\keyboard@nkey{34}{18}{}
+\keyboard@nkey{38}{18}{}
+\keyboard@nkey{42}{18}{}
+\keyboard@nkey{46}{18}{}
+\keyboard@nkey{50}{18}{}
+\keyboard@key{56}{18}{8}{4}{}
+
+% Tab row:
+\keyboard@key{3}{14}{6}{4}{}
+\keyboard@nkey{8}{14}{x}
+\keyboard@nkey{12}{14}{}
+\keyboard@nkey{16}{14}{}
+\keyboard@nkey{20}{14}{}
+\keyboard@nkey{24}{14}{}
+\keyboard@nkey{28}{14}{}
+\keyboard@nkey{32}{14}{}
+\keyboard@nkey{36}{14}{}
+\keyboard@nkey{40}{14}{}
+\keyboard@nkey{44}{14}{}
+\keyboard@nkey{48}{14}{}
+\keyboard@nkey{52}{14}{}
+
+% caps lock row:
+\keyboard@key{3.5}{10}{7}{4}{}
+\keyboard@nkey{9}{10}{}
+\keyboard@nkey{13}{10}{}
+\keyboard@nkey{17}{10}{}
+\keyboard@nkey{21}{10}{}
+\keyboard@nkey{25}{10}{}
+\keyboard@nkey{29}{10}{}
+\keyboard@nkey{33}{10}{}
+\keyboard@nkey{37}{10}{}
+\keyboard@nkey{41}{10}{}
+\keyboard@nkey{45}{10}{}
+\keyboard@nkey{49}{10}{}
+\keyboard@nkey{53}{10}{}
+
+% Shift row:
+\keyboard@key{2.5}{6}{5}{4}{}
+\keyboard@nkey{7}{6}{ü}
+\keyboard@nkey{11}{6}{}
+\keyboard@nkey{15}{6}{}
+\keyboard@nkey{19}{6}{}
+\keyboard@nkey{23}{6}{}
+\keyboard@nkey{27}{6}{}
+\keyboard@nkey{31}{6}{}
+\keyboard@nkey{35}{6}{}
+\keyboard@nkey{39}{6}{}
+\keyboard@nkey{43}{6}{}
+\keyboard@nkey{47}{6}{}
+\keyboard@key{54.5}{6}{11}{4}{}
+
+\keyboard@enter{En}
+
+% Strg row:
+\keyboard@key{3}{2}{6}{4}{\keyboard@k11}
+\keyboard@key{8}{2}{4}{4}{}
+\keyboard@key{13}{2}{6}{4}{}
+\keyboard@key{27}{2}{22}{4}{}
+
+\keyboard@key{41}{2}{6}{4}{}
+\keyboard@key{47}{2}{6}{4}{}
+\keyboard@key{53}{2}{6}{4}{}
+\keyboard@key{57.5}{2}{5}{4}{}
+
+\end{tikzpicture}
 }
 
 %\subsection{The main command}
