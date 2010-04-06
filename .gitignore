@@ -10,6 +10,9 @@
 *.out
 *.toc
 
+# Ignore auto folder created by Emacs AUCTeX mode
+auto/
+
 # Ignore all final documents (but grasp PDF images):
 *.sty
 keyboard.pdf
