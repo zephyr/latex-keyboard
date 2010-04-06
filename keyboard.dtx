@@ -94,6 +94,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \pgfkeys{
   /keyboard/.cd,
   basesize/.store in = \keyboard@bs,
+  textscale/.store in = \keyboard@textscale,
   color/.store in = \keyboard@color,
   colour/.style = {color=#1},
   fillcolor/.store in = \keyboard@fillcolor,
@@ -168,6 +169,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \pgfkeys{
   /keyboard/.cd,
   basesize = 0.175cm, % the size of a single quadratic key
+  textscale = 1.0, % same size as surrounding text
   color = black,
   fillcolor = black!10,
   drawcolor = black,
@@ -241,7 +243,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \newcommand*{\keyboard@key}[5]{
 \draw (#1*\keyboard@bs,#2*\keyboard@bs)
   node[draw, minimum width=#3*\keyboard@bs, minimum height=#4*\keyboard@bs, rectangle, color=\keyboard@color, fill=\keyboard@fillcolor, thick] {}
-  node[anchor=base, color=\keyboard@color, yshift=-0.7*\keyboard@bs] {#5}
+  node[anchor=base, color=\keyboard@color, yshift=-0.7*\keyboard@bs, scale=\keyboard@textscale] {#5}
   ;
 }
 
@@ -258,7 +260,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
  (55*\keyboard@bs,8*\keyboard@bs) --
  (55*\keyboard@bs,12*\keyboard@bs) --
  (54*\keyboard@bs,12*\keyboard@bs) --
- cycle node[anchor=base, color=\keyboard@color, xshift=3.5*\keyboard@bs, yshift=-0.5*\keyboard@bs] {#1} ;
+ cycle node[anchor=base, color=\keyboard@color, xshift=3.5*\keyboard@bs, yshift=-0.5*\keyboard@bs, scale=\keyboard@textscale] {#1} ;
 }
 
 
@@ -372,6 +374,10 @@ This is a empty ‘girlie style’ keyboard:
   drawcolor = blue,
   fillcolor = pink!40,
   space = {Lost in Space …}
+}
+
+\drawkeyboard{
+  textscale = 1.1
 }
 
 \begin{figure}
