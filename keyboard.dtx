@@ -53,8 +53,10 @@ Do not distribute a modified version of this file under the same name.
 \title{The |keyboard| package\footnote{\filenote}}
 
 \author{%
-\githubuser{Dennis}{Heidsiek}{zephir}{HeidsiekB@aol.com}
+\githubuser{Dennis}{Heidsiek}{zephir}{HeidsiekB@aol.com}\and
+\githubuser{Christian}{Kluge}{frakturfreak}{ckfrakturfreak@web.de}
 }
+
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -85,7 +87,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 
 %\subsection{Version}
 \ProvidesPackage{keyboard}
-  [2010/04/05 v0.1c provides keyboards, initial experimental version.]
+  [2010/04/05 v0.1d provides keyboards, initial experimental version.]
 
 %\subsection{Data structures}
 % Define boolean macros for the state:
@@ -164,7 +166,6 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   dash/.store in = \keyboard@dash,
   tii/.store in = \keyboard@tii,
   bsp/.store in = \keyboard@bsp
-  % del/.store in = keyboard del
 }
 
 %\subsection{Package defaults}
@@ -237,8 +238,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   zero={},
   dash={},
   tii={},
-  bsp={},
-  %del={}
+  bsp={}
 }
 
 %subsection{Helper macros for drawing keys}
@@ -347,7 +347,6 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \keyboard@nkey{46}{18}{\keyboard@dash}
 \keyboard@nkey{50}{18}{\keyboard@tii}
 \keyboard@key{56}{18}{8}{4}{\keyboard@bsp}
-% keyboard key{56}{18}{8}{4}{keyboard del}
 
 \end{tikzpicture}
 }
@@ -458,7 +457,6 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   dash={-},
   tii=T2,
   bsp=Backsp
-  %del=Del
 }
 \caption{This is a serious keyboard.}
 \end{figure}
