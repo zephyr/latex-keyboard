@@ -1,5 +1,5 @@
 % \iffalse
-%% File: keyboard.dtx by Dennis Heidsiek, mail: HeidsiekB at aol dot com
+%% File: keyoard.dtx by Dennis Heidsiek, mail: HeidsiekB at aol dot com
 %%
 %% You can get the latest version at http://github.com/zephyr/latex-keyboard
 %%
@@ -79,7 +79,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 %\subsection{Requirements}
 \NeedsTeXFormat{LaTeX2e}
 % For the graphic stuff:
-\RequirePackage{tikz} 
+\RequirePackage{tikz}
 % For parsing |key=value| input:
 \RequirePackage{pgfkeys}
 
@@ -163,7 +163,8 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   zero/.store in = \keyboard@zero,
   dash/.store in = \keyboard@dash,
   tii/.store in = \keyboard@tii,
-  del/.store in = \keyboard@del
+  bsp/.store in = \keyboard@bsp
+  % del/.store in = keyboard del
 }
 
 %\subsection{Package defaults}
@@ -183,7 +184,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   osr={},
   menu={},
   strgr={},
-  miil={},  
+  miil={},
   mivl={},
   ue={},
   oe={},
@@ -236,7 +237,8 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   zero={},
   dash={},
   tii={},
-  del={}
+  bsp={},
+  %del={}
 }
 
 %subsection{Helper macros for drawing keys}
@@ -244,7 +246,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 %Define two optical styles:
 \tikzstyle{keyboardkey}=[line width=\keyboard@thickness, color=\keyboard@drawcolor, fill=\keyboard@fillcolor]
 \tikzstyle{keyboardtext}=[anchor=base, color=\keyboard@color, scale=\keyboard@textscale]
-        
+
 % Typsets a single key, centered arround |x|, |y| of width |w|, height |h| with content |c|:
 \newcommand*{\keyboard@key}[5]{
 \draw (#1*\keyboard@bs,#2*\keyboard@bs)
@@ -343,8 +345,9 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \keyboard@nkey{38}{18}{\keyboard@nix}
 \keyboard@nkey{42}{18}{\keyboard@zero}
 \keyboard@nkey{46}{18}{\keyboard@dash}
-\keyboard@nkey{50}{18}{\keyboard@tii} 
-\keyboard@key{56}{18}{8}{4}{\keyboard@del}
+\keyboard@nkey{50}{18}{\keyboard@tii}
+\keyboard@key{56}{18}{8}{4}{\keyboard@bsp}
+% keyboard key{56}{18}{8}{4}{keyboard del}
 
 \end{tikzpicture}
 }
@@ -372,11 +375,11 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \author{Dennis Heidsiek}
 \maketitle
 
-\drawkeyboard{} % The empty standard keyboard 
+\drawkeyboard{} % The empty standard keyboard
 
 \drawkeyboard{ % A ‘girlie style’ keyboard:
   thickness = 6pt, % much thicker!
-  textscale = 1.2, % bigger text  
+  textscale = 1.2, % bigger text
   basesize = 0.2cm,
   color = blue,
   drawcolor = purple,
@@ -401,7 +404,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   osr=OS,
   menu={Me},
   strgr=Strg,
-  miil=M2,  
+  miil=M2,
   mivl=M4,
   ue=ü,
   oe=ö,
@@ -454,7 +457,8 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   zero=0,
   dash={-},
   tii=T2,
-  del=Del
+  bsp=Backsp
+  %del=Del
 }
 \caption{This is a serious keyboard.}
 \end{figure}
