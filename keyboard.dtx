@@ -85,7 +85,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 
 %\subsection{Version}
 \ProvidesPackage{keyboard}
-  [2010/04/05 v0.1b provides keyboards, initial experimental version.]
+  [2010/04/05 v0.1c provides keyboards, initial experimental version.]
 
 %\subsection{Data structures}
 % Define boolean macros for the state:
@@ -93,6 +93,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 % Explain how the |key=value| input should be processed and stored into the tree:
 \pgfkeys{
   /keyboard/.cd,
+  thickness/.store in = \keyboard@thickness,
   basesize/.store in = \keyboard@bs,
   textscale/.store in = \keyboard@textscale,
   color/.store in = \keyboard@color,
@@ -168,6 +169,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 %\subsection{Package defaults}
 \pgfkeys{
   /keyboard/.cd,
+  thickness=0.8pt, % the TikZ manual’s definition of thick
   basesize = 0.175cm, % the size of a single quadratic key
   textscale = 1.0, % same size as surrounding text
   color = black,
@@ -239,30 +241,33 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 
 %subsection{Helper macros for drawing keys}
 
+%Define two optical styles:
+\tikzstyle{keyboardkey}=[line width=\keyboard@thickness, color=\keyboard@drawcolor, fill=\keyboard@fillcolor]
+\tikzstyle{keyboardtext}=[anchor=base, color=\keyboard@color, scale=\keyboard@textscale]
+        
 % Typsets a single key, centered arround |x|, |y| of width |w|, height |h| with content |c|:
 \newcommand*{\keyboard@key}[5]{
 \draw (#1*\keyboard@bs,#2*\keyboard@bs)
-  node[draw, minimum width=#3*\keyboard@bs, minimum height=#4*\keyboard@bs, rectangle, color=\keyboard@color, fill=\keyboard@fillcolor, thick] {}
-  node[anchor=base, color=\keyboard@color, yshift=-0.7*\keyboard@bs, scale=\keyboard@textscale] {#5}
+  node[draw, minimum width=#3*\keyboard@bs, minimum height=#4*\keyboard@bs, rectangle, keyboardkey] {}
+  node[keyboardtext, yshift=-0.7*\keyboard@bs] {#5}
   ;
 }
 
 % Typsets a single normal quadratic key, centered arround |x|, |y| with content |c|:
 \newcommand{\keyboard@nkey}[3]{\keyboard@key{#1}{#2}{4}{4}{#3}}
 
-
 % Typsets the enter key with content |c|:
 \newcommand{\keyboard@ekey}[1]{%
-\filldraw[color=\keyboard@color, fill=\keyboard@fillcolor, thick]
+\filldraw[keyboardkey]
  (54*\keyboard@bs,16*\keyboard@bs) --
  (60*\keyboard@bs,16*\keyboard@bs) --
  (60*\keyboard@bs,8*\keyboard@bs) --
  (55*\keyboard@bs,8*\keyboard@bs) --
  (55*\keyboard@bs,12*\keyboard@bs) --
  (54*\keyboard@bs,12*\keyboard@bs) --
- cycle node[anchor=base, color=\keyboard@color, xshift=3.5*\keyboard@bs, yshift=-0.5*\keyboard@bs, scale=\keyboard@textscale] {#1} ;
+ cycle node[keyboardtext, xshift=3.5*\keyboard@bs, yshift=-0.5*\keyboard@bs] {#1}
+ ;
 }
-
 
 % Draws a keyboard with the given parameters:
 \newcommand*{\keyboard@apply}{%
@@ -366,27 +371,27 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \title{A short sample document for the \texttt{keyboard} package}
 \author{Dennis Heidsiek}
 \maketitle
-This is a empty ‘girlie style’ keyboard:
 
-\drawkeyboard{
+\drawkeyboard{} % The empty standard keyboard 
+
+\drawkeyboard{ % A ‘girlie style’ keyboard:
+  thickness = 6pt, % much thicker!
+  textscale = 1.2, % bigger text  
   basesize = 0.2cm,
-  color = purple,
-  drawcolor = blue,
+  color = blue,
+  drawcolor = purple,
   fillcolor = pink!40,
   space = {Lost in Space …}
-}
-
-\drawkeyboard{
-  textscale = 1.2
 }
 
 \begin{figure}
 \centering
 \drawkeyboard{
+  thickness = 0.6pt,
   basesize = 0.18cm,
   textscale = 1.1,
   color = black,
-  drawcolor = black!10,
+  drawcolor = black,
   fillcolor = white,
   strgl=Strg,
   osl=OS,
@@ -451,7 +456,7 @@ This is a empty ‘girlie style’ keyboard:
   tii=T2,
   del=Del
 }
-\caption{This is also a keyboard.}
+\caption{This is a serious keyboard.}
 \end{figure}
 
 \end{document}
