@@ -23,9 +23,6 @@ Even though the documentation depends on XeTeX, the package itself works under e
 
 This package has not yet reachead a stable status, so the user intferface may change!
 
-### ToDo’s
-
-* better naming convention for the keys: Based on qwerty?
 
 ## Licence
 
