@@ -379,20 +379,32 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \author{Dennis Heidsiek}
 \maketitle
 
-\drawkeyboard{} % The empty standard keyboard
+A very simple standard keyboard:
 
-\drawkeyboard{ % A ‘girlie style’ keyboard:
-  thickness = 6pt, % much thicker!
-  textscale = 1.2, % bigger text
-  basesize = 0.2cm,
+\drawkeyboard{
+  x = q,
+  v = w,
+  l = e,
+  c = r,
+  w = t
+}
+
+A ‘girlie style’ keyboard:
+
+\drawkeyboard{
+  basesize = 0.18cm, % in total a little bit smaller
+  thickness = 6pt, % much thicker margins!
+  textscale = 0.9, % hence smaller text
   colour = blue,
   drawcolour = purple,
   fillcolour = pink!40,
+  enter = {\fontspec{Linux Biolinum O}\Huge ☺},
   space = {Lost in Space …}
 }
 
 \begin{figure}
 \centering
+\fontspec{Linux Biolinum O}
 \drawkeyboard{
   thickness = 0.6pt,
   basesize = 0.18cm,
@@ -406,7 +418,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   strgl=Strg,
   osl=OS,
   altl=Alt,
-  space={Space it, Baby!},
+  space={␣ or ⍽},
   altr=Alt,
   osr=OS,
   menu={Me},
