@@ -87,9 +87,13 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 
 %\subsection{Version}
 \ProvidesPackage{keyboard}
-  [2010/04/05 v0.1e provides keyboards, initial experimental version.]
+  [2010/04/07 v0.1f provides keyboards, initial experimental version.]
 
 %\subsection{Data structures}
+
+% Provide if-structures for layout options for enter and shift
+  \newif\ifenterisrectangular
+  \newif\ifshiftissmall
 
 % Explain how the |key=value| input should be processed and stored into the tree:
 \pgfkeys{
@@ -106,6 +110,8 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   centerhook/.store in = \keyboard@hook@c,
   homerowhook/.store in = \keyboard@hook@hr,
   nonneoglyphhook/.store in = \keyboard@hook@nng,
+  rectangularenter/.is if=enterisrectangular,
+  smallshift/.is if=shiftissmall,
   strgl/.store in = \keyboard@strgl,
   osl/.store in = \keyboard@osl,
   altl/.store in = \keyboard@altl,
@@ -179,6 +185,8 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
   color = black,
   fillcolor = black!10,
   drawcolor = black,
+  rectangularenter=false,
+  smallshift=true,
   centerhook = {},
   homerowhook = {},
   nonneoglyphhook = {},
@@ -263,7 +271,8 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 % Typsets a single normal quadratic key, centered arround |x|, |y| with content |c|:
 \newcommand{\keyboard@nkey}[3]{\keyboard@key{#1}{#2}{4}{4}{#3}}
 
-% Typsets the enter key with content |c|:
+% Typsets the nonrectangular enter key with content |c|:
+
 \newcommand{\keyboard@ekey}[1]{%
 \filldraw[keyboardkey]
  (54*\keyboard@bs,16*\keyboard@bs) --
@@ -292,8 +301,13 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \keyboard@key{57.5}{2}{5}{4}{\keyboard@hook@nng{\keyboard@strgr}}
 
 % Shift row:
+\ifshiftissmall
 \keyboard@key{2.5}{6}{5}{4}{\keyboard@hook@nng{\keyboard@miil}}
 \keyboard@nkey{7}{6}{\keyboard@hook@nng{\keyboard@mivl}}
+\else
+\keyboard@key{4.5}{6}{9}{4}{\keyboard@hook@nng{\keyboard@miil}}
+keyboard@key{11}{6}{0}{4}{\keyboard@hook@nng{\keyboard@mivl}}
+\fi
 \keyboard@nkey{11}{6}{\keyboard@ue}
 \keyboard@nkey{15}{6}{\keyboard@oe}
 \keyboard@nkey{19}{6}{\keyboard@ae}
@@ -319,9 +333,12 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \keyboard@nkey{41}{10}{\keyboard@hook@hr{\keyboard@t}}
 \keyboard@nkey{45}{10}{\keyboard@hook@hr{\keyboard@d}}
 \keyboard@nkey{49}{10}{\keyboard@y}
+\ifenterisrectangular
+\keyboard@key{55.5}{10}{9}{4}{\keyboard@hook@nng{\keyboard@enter}}
+\else
 \keyboard@nkey{53}{10}{\keyboard@hook@nng{\keyboard@miiir}}
 \keyboard@ekey{\keyboard@hook@nng{\keyboard@enter}}
-
+\fi
 % Tab row:
 \keyboard@key{3}{14}{6}{4}{\keyboard@hook@nng{\keyboard@tab}}
 \keyboard@nkey{8}{14}{\keyboard@x}
@@ -335,8 +352,12 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \keyboard@nkey{40}{14}{\keyboard@f}
 \keyboard@nkey{44}{14}{\keyboard@q}
 \keyboard@nkey{48}{14}{\keyboard@sz}
+\ifenterisrectangular
+\keyboard@nkey{52}{14}{\keyboard@hook@nng{\keyboard@miiir}}
+\keyboard@key{57}{14}{6}{4}{\keyboard@hook@nng{\keyboard@tii}}
+\else
 \keyboard@nkey{52}{14}{\keyboard@hook@nng{\keyboard@tiii}}
-
+\fi
 % number row:
 \keyboard@nkey{2}{18}{\keyboard@hook@nng{\keyboard@ti}}
 \keyboard@nkey{6}{18}{\keyboard@ni}
