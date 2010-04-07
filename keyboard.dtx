@@ -91,9 +91,9 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 
 %\subsection{Data structures}
 
-% Provide if-structures for layout options for enter and shift
-  \newif\ifenterisrectangular
-  \newif\ifshiftissmall
+% Provide if-structures for layout options for enter and shift:
+\newif\ifkeyboard@enterisrectangular
+\newif\ifkeyboard@shiftissmall
 
 % Explain how the |key=value| input should be processed and stored into the tree:
 \pgfkeys{
@@ -301,7 +301,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \keyboard@key{57.5}{2}{5}{4}{\keyboard@hook@nng{\keyboard@strgr}}
 
 % Shift row:
-\ifshiftissmall
+\ifkeyboard@shiftissmall
 \keyboard@key{2.5}{6}{5}{4}{\keyboard@hook@nng{\keyboard@miil}}
 \keyboard@nkey{7}{6}{\keyboard@hook@nng{\keyboard@mivl}}
 \else
@@ -333,7 +333,7 @@ keyboard@key{11}{6}{0}{4}{\keyboard@hook@nng{\keyboard@mivl}}
 \keyboard@nkey{41}{10}{\keyboard@hook@hr{\keyboard@t}}
 \keyboard@nkey{45}{10}{\keyboard@hook@hr{\keyboard@d}}
 \keyboard@nkey{49}{10}{\keyboard@y}
-\ifenterisrectangular
+\ifkeyboard@enterisrectangular
 \keyboard@key{55.5}{10}{9}{4}{\keyboard@hook@nng{\keyboard@enter}}
 \else
 \keyboard@nkey{53}{10}{\keyboard@hook@nng{\keyboard@miiir}}
@@ -352,7 +352,7 @@ keyboard@key{11}{6}{0}{4}{\keyboard@hook@nng{\keyboard@mivl}}
 \keyboard@nkey{40}{14}{\keyboard@f}
 \keyboard@nkey{44}{14}{\keyboard@q}
 \keyboard@nkey{48}{14}{\keyboard@sz}
-\ifenterisrectangular
+\ifkeyboard@enterisrectangular
 \keyboard@nkey{52}{14}{\keyboard@hook@nng{\keyboard@miiir}}
 \keyboard@key{57}{14}{6}{4}{\keyboard@hook@nng{\keyboard@tii}}
 \else
