@@ -397,12 +397,14 @@ keyboard@key{11}{6}{0}{4}{\keyboard@hook@nng{\keyboard@mivl}}
 
 \begin{document}
 \title{A short sample document for the \texttt{keyboard} package}
-\author{Dennis Heidsiek}
+\author{Dennis Heidsiek \and Christian Kluge}
 \maketitle
 
-A very simple standard keyboard:
+A very simple US style standard keyboard:
 
 \drawkeyboard{
+  rectangularenter=true,
+  smallshift=false,
   x = q,
   v = w,
   l = e,
@@ -419,6 +421,8 @@ A ‘girlie style’ keyboard:
   colour = blue,
   drawcolour = purple,
   fillcolour = pink!40,
+  rectangularenter=false,
+  smallshift=true,
   enter = {\fontspec{Linux Biolinum O}\Huge ☺},
   space = {Lost in Space …}
 }
@@ -436,6 +440,8 @@ A ‘girlie style’ keyboard:
   centerhook = \underline,
   homerowhook = \textbf,
   nonneoglyphhook = {\scriptsize\textcolor{black!70}},
+  rectangularenter=false,
+  smallshift=true,
   strgl=Strg,
   osl=OS,
   altl=Alt,
