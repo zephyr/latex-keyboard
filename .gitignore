@@ -6,6 +6,7 @@
 *.blg
 *.glo
 *.idx
+*.lof
 *.log
 *.out
 *.toc
