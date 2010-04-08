@@ -67,7 +67,7 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 \tableofcontents
 
 \section{Commands for the user}
-Just look a the examples in the file |keyboard-demo.tex|!
+Just look at the examples in the file |keyboard-demo.tex|!
 %ToDo: Read gmdocc ;) to make a more proper documentation.
 
 \section{Roadmap}
@@ -419,8 +419,11 @@ keyboard@key{11}{6}{0}{4}{\keyboard@hook@nng{\keyboard@mivl}}
 \author{Dennis Heidsiek \and Christian Kluge}
 \maketitle
 
-A very simple US style standard keyboard:
+\listoffigures
 
+Normal Text: \drawkeyboard{}
+
+\begin{figure}
 \drawkeyboard{
   rectangularenter=true,
   smallshift=false,
@@ -431,9 +434,10 @@ A very simple US style standard keyboard:
   w = t,
   k = y
 }
+\caption{A very empty US style standard keyboard.}
+\end{figure}
 
-A ‘girlie style’ keyboard:
-
+\begin{figure}
 \drawkeyboard{
   basesize = 0.18cm, % in total a little bit smaller
   thickness = 6pt, % much thicker margins!
@@ -446,6 +450,8 @@ A ‘girlie style’ keyboard:
   enter = {\fontspec{Linux Biolinum O}\Huge ☺},
   space = {Lost in Space …}
 }
+\caption{A ‘girlie style’ keyboard.}
+\end{figure}
 
 \begin{figure}
 \centering
