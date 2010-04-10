@@ -34,6 +34,8 @@ Do not distribute a modified version of this file under the same name.
 \documentclass{gmdocc}
 \def\marginpartt{\scriptsize\ttfamily}  % needed fix for XeTeX because of problems with the lmodern font.
 \GetFileInfo{keyboard.sty}
+\RecordChanges
+%\PrintChanges % not yet working
 
 \usepackage{
   xltxtra,
@@ -72,7 +74,7 @@ Just look at the examples in the file |keyboard-demo.tex|!
 
 
 \section{Further Development}
-While this package satisfies its original purpose\footnote{To provide images of the \href{http://neo-layout.org/}{Neo keyboard layout} for an \href{http://github.com/alt/neo-article}{article} in \href{http://www.dante.de/DTK.html}{\textgerman{Die TeXnische Komödie}}.}, there’re still many ideas how it could be improved. Feedback is desired!
+While this package satisfies its original purpose\footnote{To provide images of the \href{http://neo-layout.org/}{Neo keyboard layout} for an \href{http://github.com/alt/neo-article}{article} in \href{http://www.dante.de/DTK.html}{\textgerman{Die TeXnische Komödie}}.}, there’re still many ideas how it could be improved. \emph{Feedback is desired!}
 
 \subsection{Key naming conventing}
 The current naming convention of the keys is based on the Neo keyboard layout, which is (sad but true) unusual for the average user. So we need a better one: Based on qwerty or qwertz? Numerical – one-dimensional (1–40) or two-dimensional (1/1, 1/2, 1/3, …, 2/1, 2/2, …, 4/13)? Maybe Linux scancodes or keysyms? It should be memorizeable, more or less layout-independent, and use short (maybe even equally long?) keys.
@@ -80,14 +82,36 @@ The current naming convention of the keys is based on the Neo keyboard layout, w
 \subsection{Generalized hook creation}
 A hook can style a whole bunch of keys simultaneously, which is a powerful concept to avoid redundancy. Currently, there are three hooks (|centerhook|, |homerowhook| and |nonneoglyphhook|), but they are “hard coded”, so there is no possibility to easily create new hooks: one \emph{should} can do somethink like |\newkeybordhook{leftringfinger}{oe,i,v,nii}|.
 
-\subsection{Provides standard keyboard layouts}
-One could provide a bunch of ready-to-use keyboard layouts like dvorak.
+\subsection{Revised user interface}
+In general, the whole user interface should become more intuitive and the content should be separated from the style. The package should provide some high level commands, but without losing the possibility to change or define everythink by hand. At best, all of this should be combined, for example:
+\begin{verbatim}
+\keyboardstyle{ % global standard style
+    named=hackerterminal, % green monospace font onto black background
+    thickness=2pt % but really really bold!
+}
+\end{verbatim}
+and then |\keyboard[localstyle]{content}|, for example:
+\begin{verbatim}
+\keyboard{named=neo2layer1}
+% …
+\keyboard[
+    named=lucidwhite % at the end, we have to rest our green ink ;)
+]{
+   named=neo2layer6,
+   space={¡Neo based geek math rulz!}
+}
+\end{verbatim}
+
+\subsection{Provide standard layouts and styles}
+One could provide a bunch of ready-to-use keyboard layouts like dvorak, qwerty or neo and some usable styles (only black and white, graystyle).
 
 \subsection{Keypad and other missing keys}
 One could also extend this package to draw the keypad (as own graphic or integrated with the main keypad), function keys (ESC, F1–F12, …) and so on.
 
 \subsection{Tentative roadmap}
 \begin{description}
+\item[v0.1] Current legacy release.
+\item[v0.2—v0.7] Implementing most of the missing features.
 \item[v0.8] First stabilisation release.
 \item[v0.8] Second stabilisation release.
 \item[v1.0] First Release to \textsc{Ctan}.
@@ -113,8 +137,11 @@ One could also extend this package to draw the keypad (as own graphic or integra
 %\subsection{Version history}
 \ProvidesPackage{keyboard}
   [2010/04/07 v0.1f provides keyboards, initial experimental version.]
-%%\changes{v0.01}{2010/04/??}{Initial version}
-%%\changes{v0.01a}{2010/04/??}{Small fixes}
+
+% \ChangesStart{v0.10}{2010/04/01}
+% \changes{v0.10b}{2010/04/02}{Tra}
+% \changes{v0.10c}{2010/04/03}{Trala}
+% \changes{v0.10d}{2010/04/04}{Tralala}
 
 %\subsection{Data structures}
 
