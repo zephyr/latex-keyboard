@@ -550,7 +550,21 @@ Normal Text: \drawkeyboard{}
   tii=T2,
   bsp=Backsp
 }
-\caption{This is a serious keyboard.}
+\drawkeyboard{% “inverted” style suggested by Frank Mayer
+  textscale = 1.4,
+  thickness = 0.8pt,
+  color = white,
+  drawcolor = black!25,
+  fillcolor = black!95,
+  nonneoglyphhook = {\scriptsize\textcolor{white!70}}
+}
+\drawkeyboard{% “hackerstyle” modification
+  color = green!70!black,
+  centerhook = \underline,
+  homerowhook = \textbf,
+  nonneoglyphhook = {\scriptsize\textcolor{green!40!black}}
+}
+\caption{This is a serious keyboard in three different styles.}
 \end{figure}
 
 \end{document}
