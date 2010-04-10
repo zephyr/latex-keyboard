@@ -70,7 +70,8 @@ This is the documentation of the \LaTeXe\ package |keyboard|. It provides a sing
 Just look at the examples in the file |keyboard-demo.tex|!
 %ToDo: Read gmdocc ;) to make a more proper documentation.
 
-\section{Roadmap}
+
+\section{Further Development}
 While this package satisfies its original purpose\footnote{To provide images of the \href{http://neo-layout.org/}{Neo keyboard layout} for an \href{http://github.com/alt/neo-article}{article} in \href{http://www.dante.de/DTK.html}{\textgerman{Die TeXnische Komödie}}.}, there’re still many ideas how it could be improved. Feedback is desired!
 
 \subsection{Key naming conventing}
@@ -84,6 +85,13 @@ One could provide a bunch of ready-to-use keyboard layouts like dvorak.
 
 \subsection{Keypad and other missing keys}
 One could also extend this package to draw the keypad (as own graphic or integrated with the main keypad), function keys (ESC, F1–F12, …) and so on.
+
+\subsection{Tentative roadmap}
+\begin{description}
+\item[v0.8] First stabilisation release.
+\item[v0.8] Second stabilisation release.
+\item[v1.0] First Release to \textsc{Ctan}.
+\end{description}
 
 \section{Implementation}
 \DocInput{keyboard.dtx}
@@ -102,9 +110,11 @@ One could also extend this package to draw the keypad (as own graphic or integra
 % For parsing |key=value| input:
 \RequirePackage{pgfkeys}
 
-%\subsection{Version}
+%\subsection{Version history}
 \ProvidesPackage{keyboard}
   [2010/04/07 v0.1f provides keyboards, initial experimental version.]
+%%\changes{v0.01}{2010/04/??}{Initial version}
+%%\changes{v0.01a}{2010/04/??}{Small fixes}
 
 %\subsection{Data structures}
 
