@@ -102,11 +102,25 @@ and then |\keyboard[localstyle]{content}|, for example:
 }
 \end{verbatim}
 
-\subsection{Provide standard layouts and styles}
-One could provide a bunch of ready-to-use keyboard layouts like dvorak, qwerty or neo and some usable styles (only black and white, graystyle).
+\subsection{Provide standard styles and layouts}
+One should provide a bunch of ready-to-use usable styles (like colored, graystyle, only black and white, …) and well known stanard keyboard layouts like
+\begin{description}
+\item[Neo 2] (all layers)
+\item[Neo 1.1]
+\item[Neo 1]
+\item[Qwertz] and its various language-specific variants
+\item[Qwerty] and its various language-specific variants
+\item[Azerty]
+\item[Turkish-F]
+\item[Dvorak]
+\item[Colemak]
+\item[Bépo]
+\item[…]
+\end{description}
+At least every layout mentioned at \url{http://en.wikipedia.org/wiki/Keyboard_layout} should be a potential candidate for inclusion.
 
 \subsection{Keypad and other missing keys}
-One could also extend this package to draw the keypad (as own graphic or integrated with the main keypad), function keys (ESC, F1–F12, …) and so on.
+One could also extend this package to draw the keypad (as own graphic or integrated with the main keypad), function keys (Escape, F1–F12, …, arrow keys, …) and so on. On the other hand, it should definitive \emph{not} include every non-standard key of a laptop keyboard or a start-my-calculator key. The focus of this package is to provide a simple generic \emph{standard} keyboard.
 
 \subsection{Tentative roadmap}
 \begin{description}
