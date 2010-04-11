@@ -384,7 +384,6 @@ One could also extend this package to draw the keypad (as own graphic or integra
 \keyboard@nkey{7}{6}{\keyboard@hook@nng{\keyboard@mivl}}
 \else
 \keyboard@key{4.5}{6}{9}{4}{\keyboard@hook@nng{\keyboard@miil}}
-keyboard@key{11}{6}{0}{4}{\keyboard@hook@nng{\keyboard@mivl}}
 \fi
 \keyboard@nkey{11}{6}{\keyboard@ue}
 \keyboard@nkey{15}{6}{\keyboard@oe}
@@ -608,7 +607,9 @@ Normal Text: \drawkeyboard{}
   color = green!70!black,
   centerhook = \underline,
   homerowhook = \textbf,
-  nonneoglyphhook = {\scriptsize\textcolor{green!40!black}}
+  nonneoglyphhook = {\scriptsize\textcolor{green!40!black}},
+  rectangularenter=true,
+  smallshift=false
 }
 \caption{This is a serious keyboard in three different styles.}
 \end{figure}
