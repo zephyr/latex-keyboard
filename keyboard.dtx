@@ -32,6 +32,7 @@ Do not distribute a modified version of this file under the same name.
 \fi
 
 \documentclass{gmdocc}
+\usepackage[inline, visible]{gmdoc-enhance} % provides ›real‹ comments with %! in the implementation
 \def\marginpartt{\scriptsize\ttfamily}  % needed fix for XeTeX because of problems with the lmodern font.
 \GetFileInfo{keyboard.sty}
 \RecordChanges
@@ -362,6 +363,9 @@ One could also extend this package to draw the keypad (as own graphic or integra
  cycle node[keyboardtext, xshift=3.5*\keyboard@bs, yshift=-0.5*\keyboard@bs] {#1}
  ;
 }
+
+%! \newcommand{\keyboardset}[1]…
+%! \newcommand{\keyboard}[2]…
 
 % Draws a keyboard with the given parameters:
 \newcommand*{\keyboard@apply}{%
