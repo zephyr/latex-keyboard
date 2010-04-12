@@ -85,9 +85,9 @@ A hook can style a whole bunch of keys simultaneously, which is a powerful conce
 \subsection{Revised user interface}
 In general, the whole user interface should become more intuitive and the content should be separated from the style. The package should provide some high level commands, but without losing the possibility to change or define everythink by hand. At best, all of this should be combined, for example:
 \begin{verbatim}
-\keyboardstyle{ % global standard style
-    named=hackerterminal, % green monospace font onto black background
-    thickness=2pt % but really really bold!
+\keyboardset{ % global standard values
+   style=hackerterminal, % green monospace font onto black background
+   thickness=2pt % but really really bold!
 }
 \end{verbatim}
 and then |\keyboard[localstyle]{content}|, for example:
@@ -95,7 +95,7 @@ and then |\keyboard[localstyle]{content}|, for example:
 \keyboard{named=neo2layer1}
 % …
 \keyboard[
-    named=lucidwhite % at the end, we have to rest our green ink ;)
+   style=lucidwhite % at the end, we have to rest our green ink ;)
 ]{
    named=neo2layer6,
    space={¡Neo based geek math rulz!}
