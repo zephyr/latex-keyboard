@@ -357,7 +357,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 \keyboard@s@default
 \keyboard@c@empty
 
-%subsection{Helper macros for drawing keys}
+%\subsection{Helper macros for drawing keys}
 
 %Define two optical styles:
 \tikzstyle{keyboardkey}=[line width=\keyboard@thickness, color=\keyboard@drawcolor, fill=\keyboard@fillcolor]
@@ -387,9 +387,6 @@ One could also extend this package to draw the keypad (as own graphic or integra
  cycle node[keyboardtext, xshift=3.5*\keyboard@bs, yshift=-0.5*\keyboard@bs] {#1}
  ;
 }
-
-%! \newcommand{\keyboardset}[1]…
-%! \newcommand{\keyboard}[2]…
 
 % Draws a keyboard with the given parameters:
 \newcommand*{\keyboard@apply}{%
@@ -486,9 +483,13 @@ One could also extend this package to draw the keypad (as own graphic or integra
 \end{tikzpicture}
 }
 
-%\subsection{The main command}
+%\subsection{End user interface}
+% The commands provided for the package user; most of them expect |key=value| input which is just passed to the internal macros.
 
-%Parsing |key=value| input:
+%! \newcommand{\keyboardset}[1]…
+%! \newcommand{\keyboard}[2]…
+
+%The main command:
 \newcommand*{\drawkeyboard}[1]{%
   \pgfqkeys{/keyboard}{#1}
   \keyboard@apply
