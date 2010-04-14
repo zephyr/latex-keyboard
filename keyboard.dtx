@@ -194,7 +194,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
   smallshift/.is if=keyboard@shiftissmall
 }
 
-% Every key gets its own macro:
+% Every key gets a own macro to hold its content:
 \pgfkeys{
   /keyboard/.cd,
   strgl/.store in = \keyboard@strgl,
@@ -383,6 +383,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 % Draws a keyboard with the given parameters:
 \newcommand*{\keyboard@apply}{%
 \begin{tikzpicture}
+\begin{scope}
 
 % strgl row:
 \keyboard@key{3}{2}{6}{4}{\keyboard@hook@nng{\keyboard@strgl}}
@@ -470,6 +471,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 \keyboard@nkey{50}{18}{\keyboard@hook@nng{\keyboard@tii}}
 \keyboard@key{56}{18}{8}{4}{\keyboard@hook@nng{\keyboard@bsp}}
 
+\end{scope}
 \end{tikzpicture}
 }
 
