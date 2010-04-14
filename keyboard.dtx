@@ -167,7 +167,9 @@ One could also extend this package to draw the keypad (as own graphic or integra
 \newif\ifkeyboard@enterisrectangular
 \newif\ifkeyboard@shiftissmall
 
-% Explain how the |key=value| input should be processed and stored into the tree:
+% Next, we explain how the |key=value| input should be processed and stored into the tree provided by |pgfpages|.
+
+% How to process the style options:
 \pgfkeys{
   /keyboard/.cd,
   thickness/.store in = \keyboard@thickness,
@@ -183,7 +185,12 @@ One could also extend this package to draw the keypad (as own graphic or integra
   homerowhook/.store in = \keyboard@hook@hr,
   nonneoglyphhook/.store in = \keyboard@hook@nng,
   rectangularenter/.is if=keyboard@enterisrectangular,
-  smallshift/.is if=keyboard@shiftissmall,
+  smallshift/.is if=keyboard@shiftissmall
+}
+
+% Every key gets its own macro:
+\pgfkeys{
+  /keyboard/.cd,
   strgl/.store in = \keyboard@strgl,
   osl/.store in = \keyboard@osl,
   altl/.store in = \keyboard@altl,
