@@ -189,7 +189,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 % How to process the style options:
 \pgfkeys{
-  /keyboard/.cd,
+  /keyboard/style/.cd,
   thickness/.store in = \keyboard@thickness,
   basesize/.store in = \keyboard@bs,
   textscale/.store in = \keyboard@textscale,
@@ -208,7 +208,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 % Every key gets a own macro to hold its content:
 \pgfkeys{
-  /keyboard/.cd,
+  /keyboard/content/.cd,
   strgl/.store in = \keyboard@strgl,
   osl/.store in = \keyboard@osl,
   altl/.store in = \keyboard@altl,
@@ -279,7 +279,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 %\subsubsection{default}
 \newcommand*{\keyboard@s@default}{
 \pgfkeys{
-  /keyboard/.cd,
+  /keyboard/style/.cd,
   thickness=0.8pt, % the TikZ manual’s definition of thick
   basesize = 0.175cm, % the size of a single quadratic key
   textscale = 1.0, % same size as surrounding text
@@ -299,7 +299,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 %\subsubsection{empty}
 \newcommand*{\keyboard@c@empty}{
 \pgfkeys{
-  /keyboard/.cd,
+  /keyboard/content/.cd,
   strgl={},
   osl={},
   altl={},
@@ -502,8 +502,9 @@ One could also extend this package to draw the keypad (as own graphic or integra
 %! \newcommand{\keyboard}[2]…
 
 %The main command:
-\newcommand*{\keyboard}[2][]{% opt:#1 arg:#2
-  \pgfqkeys{/keyboard}{#1}
+\newcommand*{\keyboard}[2][]{
+  \pgfqkeys{/keyboard/style}{#1}
+  \pgfqkeys{/keyboard/content}{#2}
   \keyboard@apply
 }
 
@@ -529,9 +530,10 @@ Normal Text: \keyboard{}
 
 \begin{figure}
 \centering
-\keyboard{
+\keyboard[
   rectangularenter=true,
-  smallshift=false,
+  smallshift=false
+]{
   x = q,
   v = w,
   l = e,
@@ -546,7 +548,7 @@ Normal Text: \keyboard{}
 
 \begin{figure}
 \centering
-\keyboard{
+\keyboard[
   basesize = 0.18cm, % in total a little bit smaller
   thickness = 6pt, % much thicker margins!
   textscale = 0.9, % hence smaller text
@@ -554,7 +556,8 @@ Normal Text: \keyboard{}
   drawcolour = purple,
   fillcolour = pink!40,
   rectangularenter=false,
-  smallshift=true,
+  smallshift=true
+]{
   enter = {\fontspec{Linux Biolinum O}\Huge ☺},
   space = {Lost in Space …}
 }
@@ -564,7 +567,7 @@ Normal Text: \keyboard{}
 \begin{figure}
 \centering
 \fontspec{Linux Biolinum O}
-\keyboard{
+\keyboard[
   thickness = 0.6pt,
   basesize = 0.18cm,
   textscale = 1.1,
@@ -575,7 +578,8 @@ Normal Text: \keyboard{}
   homerowhook = \textbf,
   nonneoglyphhook = {\scriptsize\textcolor{black!70}},
   rectangularenter=false,
-  smallshift=true,
+  smallshift=true
+]{
   strgl=Strg,
   osl=OS,
   altl=Alt,
@@ -639,22 +643,23 @@ Normal Text: \keyboard{}
   tii=T2,
   bsp=Backsp
 }
-\keyboard{% “inverted” style suggested by Frank Mayer
+\keyboard[% “inverted” style suggested by Frank Mayer
   textscale = 1.4,
   thickness = 0.8pt,
   color = white,
   drawcolor = black!25,
   fillcolor = black!95,
   nonneoglyphhook = {\scriptsize\textcolor{white!70}}
-}
-\keyboard{% “hackerstyle” modification
+]{}
+
+\keyboard[% “hackerstyle” modification
   color = green!70!black,
   centerhook = \underline,
   homerowhook = \textbf,
   nonneoglyphhook = {\scriptsize\textcolor{green!40!black}},
   rectangularenter=true,
   smallshift=false
-}
+]{}
 \caption{This is a serious keyboard in three different styles.}
 \end{figure}
 
