@@ -81,7 +81,7 @@ The package is loaded as usual:
 \end{quote}
 currently without any optional arguments. Please notice that this will also load \pk{TikZ} in the background, which is a quite \emph{heavy} (but equally useful!) package.
 
-The main command to typeset a single keyboard is \TextUsage{\keyboard}\arg{parameters}.
+The main command to typeset a single keyboard is \TextUsage{\keyboard}\arg[style]{content}.
 
 For further informations, just look at the examples in the file \file{keyboard-demo.tex}!
 %ToDo: Read gmdocc ;) to make a more proper documentation.
@@ -138,7 +138,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 \subsection{Tentative roadmap}
 \begin{description}
-\item[v0.1] Initial and still current release.
+\item[v0.1] Initial release.
 \item[v0.2] Revised user interface, breaking compatibility.
 \item[v0.3—v0.7] Implementing most of the mentioned missing features:
 \begin{itemize}
@@ -173,17 +173,17 @@ One could also extend this package to draw the keypad (as own graphic or integra
 \RequirePackage{pgfkeys}
 
 %\subsection{Version history}
-\ProvidesPackage{keyboard}[2010/04/14 v0.1g Drawing of keyboard layouts]
+\ProvidesPackage{keyboard}[2010/04/14 v0.2 Drawing of keyboard layouts]
 
 %\ChangesStart{v0.1}{2010/04/05}
 %\changes{v0.1}{2010/04/05}{Initial experimental version.}
 %\changes{v0.1b}{2010/04/06}{Implementation is now working.}
 %\changes{v0.1c}{2010/04/06}{New options: \env{textscale} and \env{thickness}.}
-%\changes{v0.1d}{2010/04/06}{Corrected wrong named option: \env{del}→\env{bsp} (Backspace).}
+%\changes{v0.1d}{2010/04/06}{Corrected wrong named option: \env{del} → \env{bsp} (Backspace).}
 %\changes{v0.1e}{2010/04/07}{New options: \env{centerhook}, \env{homerowhook} and \env{nonneoglyphhook}.}
 %\changes{v0.1f}{2010/04/07}{New options: \env{rectangularenter} and \env{smallshift}.}
 %\changes{v0.1g}{2010/04/14}{Expanded the documentation and added planning for the further development.}
-%!\changes{v0.2}{2010/04/14}{Changed main command: \cs{drawkeyboard}→\cs{keyboard}, breaking compatibility.}
+%\changes{v0.2}{2010/04/14}{Changed main command: \cs{drawkeyboard}\arg{options} → \cs{keyboard}\arg[style]{content}, breaking compatibility.}
 
 %\subsection{Data structures}
 
