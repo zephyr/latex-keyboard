@@ -42,6 +42,11 @@ Do not distribute a modified version of this file under the same name.
   polyglossia,
   hyperref
 }
+
+\DeleteShortVerb\| % Fix for TikZ
+\usepackage{keyboard}
+\MakeShortVerb\| % Restore it
+
 \hypersetup{
   pdfborder= 0 0 0,
   colorlinks=true,
@@ -63,7 +68,8 @@ Do not distribute a modified version of this file under the same name.
 \begin{document}
 \maketitle
 \begin{abstract}
-This is the documentation of the \LaTeXe\ package \pk{keyboard}. It provides a single command to typeset a special keyboard layout which has to be specified on a character base, using a |key=value| interface. If you find any incompatiblities with any package, please send me an e-mail and maybe I can take care of it.
+This is the documentation of the \LaTeXe\ package \pk{keyboard}. It provides a single command to typeset a special keyboard layout which has to be specified on a character base, using a |key=value| interface. If you find any incompatiblities with any package, please send me an e-mail and maybe I can take care of it.\\
+\begin{center}\drawkeyboard{}\end{center}
 \end{abstract}
 
 \tableofcontents
@@ -162,6 +168,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 %\subsection{Version history}
 \ProvidesPackage{keyboard}[2010/04/14 v0.1g Drawing of keyboard layouts]
+
 %\ChangesStart{v0.1}{2010/04/05}
 %\changes{v0.1}{2010/04/05}{Initial experimental version.}
 %\changes{v0.1b}{2010/04/06}{Implementation is now working.}
