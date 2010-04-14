@@ -261,9 +261,11 @@ One could also extend this package to draw the keypad (as own graphic or integra
   bsp/.store in = \keyboard@bsp
 }
 
-%\subsection{Package defaults}
+%\subsection{Prefabricated styles}
+% Define the \emph{s}tyles with are usable out of the box.
 
-% The default style:
+%\subsubsection{default}
+\newcommand*{\keyboard@s@default}{
 \pgfkeys{
   /keyboard/.cd,
   thickness=0.8pt, % the TikZ manual’s definition of thick
@@ -277,9 +279,13 @@ One could also extend this package to draw the keypad (as own graphic or integra
   centerhook = {},
   homerowhook = {},
   nonneoglyphhook = {}
-}
+}}
 
-% Empty all keys:
+%\subsection{Prefabricated layouts}
+% Define the \emph{c}ontent of the keyboard layouts with are usable out of the box.
+
+%\subsubsection{empty}
+\newcommand*{\keyboard@c@empty}{
 \pgfkeys{
   /keyboard/.cd,
   strgl={},
@@ -344,7 +350,12 @@ One could also extend this package to draw the keypad (as own graphic or integra
   dash={},
   tii={},
   bsp={}
-}
+}}
+
+%\subsection{Package defaults}
+% By default, use the |default| style with |empty| content:
+\keyboard@s@default
+\keyboard@c@empty
 
 %subsection{Helper macros for drawing keys}
 
