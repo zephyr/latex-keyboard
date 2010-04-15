@@ -21,3 +21,6 @@ keyboard-demo.pdf
 
 # Ignore sink folder:
 sink/
+*.gls
+*.ilg
+*.ind
