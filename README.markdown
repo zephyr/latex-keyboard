@@ -1,28 +1,35 @@
 ﻿
 # latex-keyboard
 
-
 ## Purpose
 
 The “keyboard” package provides a single command `\keyboard` to print a special keyboard layout.
 
 ## How to Compile
 
+### Using the makefile
+
+To compile everytink, just execute the makefile:
+
+    xelatex --shell-escape makefile
+
+The option `--shell-escape` *is needed* here!
+
+### Fast by hand
+
 Just type
 
     xelatex keyboard.dtx
 
-This will give you the documentation as well as the style file.
+This will give you the documentation (without index or change history) as well as the style file and the (uncompiled) demo file.
 
 Even though the documentation depends on XeTeX, the package itself works under every LaTeX engine and can be created with
 
     tex keyboard.dtx
 
-
 ## Status
 
 This package has not yet reachead a stable status, so the user intferface may change!
-
 
 ## Licence
 
