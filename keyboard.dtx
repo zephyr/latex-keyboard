@@ -516,13 +516,19 @@ One could also extend this package to draw the keypad (as own graphic or integra
 %! \newcommand{\keyboardset}[1]…
 %! \newcommand{\keyboard}[2]…
 
-%The main command:
+% The main command:
 \newcommand*{\keyboard}[2][]{
   \pgfqkeys{/keyboard/style}{#1}
   \pgfqkeys{/keyboard/content}{#2}
   \keyboard@apply
 }
 
+% In v0.1, |\drawkeyboard| was the main command, but it is not longer supported:
+\newcommand*{\drawkeyboard}[1]{%
+  \PackageWarning{keyboard}%
+  {The command drawkeyboard is not longer offered!}%
+  {Use keyboard instead and read the manual!}%
+}
 
 % \end{macrocode}
 % \iffalse
