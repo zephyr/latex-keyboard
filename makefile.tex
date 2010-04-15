@@ -1,0 +1,7 @@
+\immediate\write18{xelatex keyboard.dtx}
+\immediate\write18{makeindex -r keyboard}
+\immediate\write18{makeindex -r -s gmglo.ist -o keyboard.gls keyboard.glo}
+\immediate\write18{xelatex keyboard.dtx}
+\immediate\write18{xelatex keyboard-demo.tex}
+\typeout{The makefile says: All files compiled. Program completed. By your command!}
+\stop
