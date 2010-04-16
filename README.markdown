@@ -9,7 +9,7 @@ The “keyboard” package provides a single command `\drawkeyboard` to print a 
 
 ### Using the makefile
 
-To compile everytink, just execute the makefile:
+To compile everything, just execute the makefile:
 
     xelatex --shell-escape makefile
 
