@@ -308,9 +308,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 % Define the \emph{c}ontent of the keyboard layouts with are usable out of the box.
 
 %\subsubsection{empty}
-\newcommand*{\keyboard@c@empty}{
-\pgfkeys{
-  /keyboard/content/.cd,
+\pgfkeys{/keyboard/content/empty/.style={
   strgl={},
   osl={},
   altl={},
@@ -378,8 +376,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 %\subsection{Package defaults}
 % By default, use the |default| style with |empty| content:
 \pgfqkeys{/keyboard/style}{default}
-%! \keyboard@s@default
-\keyboard@c@empty
+\pgfqkeys{/keyboard/content}{empty}
 
 %\subsection{Helper macros for drawing keys}
 
