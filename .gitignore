@@ -5,10 +5,7 @@
 *.bbl
 *.blg
 *.glo
-*.gls
-*.ilg
 *.idx
-*.ind
 *.lof
 *.log
 *.out
