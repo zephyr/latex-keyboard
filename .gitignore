@@ -5,11 +5,17 @@
 *.bbl
 *.blg
 *.glo
+*.gls
+*.ilg
 *.idx
+*.ind
 *.lof
 *.log
 *.out
 *.toc
+
+# Ignore generated LaTeX files:
+keyboard-demo.tex
 
 # Ignore auto folder created by Emacs AUCTeX mode
 auto/
