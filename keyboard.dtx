@@ -283,9 +283,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 % Define the \emph{s}tyles with are usable out of the box.
 
 %\subsubsection{default}
-\newcommand*{\keyboard@s@default}{
-\pgfkeys{
-  /keyboard/style/.cd,
+\pgfkeys{/keyboard/style/default/.style={
   thickness=0.8pt, % the TikZ manual’s definition of thick
   basesize = 0.175cm, % the size of a single quadratic key
   textscale = 1.0, % same size as surrounding text
@@ -300,13 +298,11 @@ One could also extend this package to draw the keypad (as own graphic or integra
 }}
 
 %\subsubsection{test}
-\newcommand*{\keyboard@s@test}{
-\pgfkeys{
+\pgfkeys{/keyboard/style/test/.style={
   /keyboard/style/.cd,
   fillcolor = green!20,
   drawcolor = yellow!30!black
 }}
-
 
 %\subsection{Prefabricated layouts}
 % Define the \emph{c}ontent of the keyboard layouts with are usable out of the box.
@@ -381,7 +377,8 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 %\subsection{Package defaults}
 % By default, use the |default| style with |empty| content:
-\keyboard@s@default
+\pgfqkeys{/keyboard/style}{default}
+%! \keyboard@s@default
 \keyboard@c@empty
 
 %\subsection{Helper macros for drawing keys}
