@@ -173,7 +173,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 \RequirePackage{pgfkeys}
 
 %\subsection{Version history}
-\ProvidesPackage{keyboard}[2010/04/14 v0.2 Drawing of keyboard layouts]
+\ProvidesPackage{keyboard}[2010/04/14 v0.2a Drawing of keyboard layouts]
 
 %\ChangesStart{v0.1}{2010/04/05}
 %\changes{v0.1}{2010/04/05}{Initial experimental version.}
@@ -184,6 +184,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 %\changes{v0.1f}{2010/04/07}{New options: \env{rectangularenter} and \env{smallshift}.}
 %\changes{v0.1g}{2010/04/14}{Expanded the documentation and added planning for the further development.}
 %\changes{v0.2}{2010/04/14}{Changed main command: \cs{drawkeyboard}\arg{options} → \cs{keyboard}\arg[style]{content}, breaking compatibility.}
+%\changes{v0.2a}{2010/04/16}{First working prefabricated styles (\env{default}, \env{test}) and layout (\env{empty})}
 
 %\subsection{Data structures}
 
@@ -541,7 +542,13 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 \listoffigures
 
-Normal Text: \keyboard{}
+A \keyboard{} included in the normal Text.
+
+\begin{figure}
+\centering
+\keyboard[default]{empty}
+\caption{The \texttt{empty} keyboard in the \texttt{default} style.}
+\end{figure}
 
 \begin{figure}
 \centering
