@@ -32,7 +32,7 @@ Do not distribute a modified version of this file under the same name.
 \fi
 
 \documentclass{gmdocc}
-\usepackage[inline, visible]{gmdoc-enhance} % provides ›real‹ comments with %! in the implementation
+\usepackage[inline, visible]{gmdoc-enhance} % provides %!for ›real‹ comments within the implementation.
 \def\marginpartt{\scriptsize\ttfamily}  % needed fix for XeTeX because of problems with the lmodern font.
 \GetFileInfo{keyboard.sty}
 \RecordChanges
@@ -69,7 +69,7 @@ Do not distribute a modified version of this file under the same name.
 \maketitle
 \begin{abstract}
 This is the documentation of the \LaTeXe\ package \pk{keyboard}. It provides a single command to typeset a special keyboard layout which has to be specified on a character base, using a |key=value| interface. If you find any incompatiblities with any package, please send me an e-mail and maybe I can take care of it.\\
-\begin{center}\drawkeyboard{}\end{center}
+\begin{center}\keyboard{}\end{center}
 \end{abstract}
 
 \tableofcontents
@@ -81,7 +81,7 @@ The package is loaded as usual:
 \end{quote}
 currently without any optional arguments. Please notice that this will also load \pk{TikZ} in the background, which is a quite \emph{heavy} (but equally useful!) package.
 
-The main command to typeset a single keyboard is \TextUsage{\drawkeyboard}\arg{parameters}.
+The main command to typeset a single keyboard is \TextUsage{\keyboard}\arg[style]{content}.
 
 For further informations, just look at the examples in the file \file{keyboard-demo.tex}!
 %ToDo: Read gmdocc ;) to make a more proper documentation.
@@ -138,7 +138,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 \subsection{Tentative roadmap}
 \begin{description}
-\item[v0.1] Initial and still current release.
+\item[v0.1] Initial release.
 \item[v0.2] Revised user interface, breaking compatibility.
 \item[v0.3—v0.7] Implementing most of the mentioned missing features:
 \begin{itemize}
@@ -173,16 +173,18 @@ One could also extend this package to draw the keypad (as own graphic or integra
 \RequirePackage{pgfkeys}
 
 %\subsection{Version history}
-\ProvidesPackage{keyboard}[2010/04/14 v0.1g Drawing of keyboard layouts]
+\ProvidesPackage{keyboard}[2010/04/14 v0.2a Drawing of keyboard layouts]
 
 %\ChangesStart{v0.1}{2010/04/05}
 %\changes{v0.1}{2010/04/05}{Initial experimental version.}
 %\changes{v0.1b}{2010/04/06}{Implementation is now working.}
 %\changes{v0.1c}{2010/04/06}{New options: \env{textscale} and \env{thickness}.}
-%\changes{v0.1d}{2010/04/06}{Corrected wrong named option: \env{del}→\env{bsp} (Backspace).}
+%\changes{v0.1d}{2010/04/06}{Corrected wrong named option: \env{del} → \env{bsp} (Backspace).}
 %\changes{v0.1e}{2010/04/07}{New options: \env{centerhook}, \env{homerowhook} and \env{nonneoglyphhook}.}
 %\changes{v0.1f}{2010/04/07}{New options: \env{rectangularenter} and \env{smallshift}.}
 %\changes{v0.1g}{2010/04/14}{Expanded the documentation and added planning for the further development.}
+%\changes{v0.2}{2010/04/14}{Changed main command: \cs{drawkeyboard}\arg{options} → \cs{keyboard}\arg[style]{content}, breaking compatibility.}
+%\changes{v0.2a}{2010/04/16}{First working prefabricated styles (\env{default}, \env{test}) and layout (\env{empty})}
 
 %\subsection{Data structures}
 
@@ -194,7 +196,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 % How to process the style options:
 \pgfkeys{
-  /keyboard/.cd,
+  /keyboard/style/.cd,
   thickness/.store in = \keyboard@thickness,
   basesize/.store in = \keyboard@bs,
   textscale/.store in = \keyboard@textscale,
@@ -213,7 +215,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 % Every key gets a own macro to hold its content:
 \pgfkeys{
-  /keyboard/.cd,
+  /keyboard/content/.cd,
   strgl/.store in = \keyboard@strgl,
   osl/.store in = \keyboard@osl,
   altl/.store in = \keyboard@altl,
@@ -282,9 +284,7 @@ One could also extend this package to draw the keypad (as own graphic or integra
 % Define the \emph{s}tyles with are usable out of the box.
 
 %\subsubsection{default}
-\newcommand*{\keyboard@s@default}{
-\pgfkeys{
-  /keyboard/.cd,
+\pgfkeys{/keyboard/style/default/.style={
   thickness=0.8pt, % the TikZ manual’s definition of thick
   basesize = 0.175cm, % the size of a single quadratic key
   textscale = 1.0, % same size as surrounding text
@@ -298,13 +298,18 @@ One could also extend this package to draw the keypad (as own graphic or integra
   nonneoglyphhook = {}
 }}
 
+%\subsubsection{test}
+\pgfkeys{/keyboard/style/test/.style={
+  /keyboard/style/.cd,
+  fillcolor = green!20,
+  drawcolor = yellow!30!black
+}}
+
 %\subsection{Prefabricated layouts}
 % Define the \emph{c}ontent of the keyboard layouts with are usable out of the box.
 
 %\subsubsection{empty}
-\newcommand*{\keyboard@c@empty}{
-\pgfkeys{
-  /keyboard/.cd,
+\pgfkeys{/keyboard/content/empty/.style={
   strgl={},
   osl={},
   altl={},
@@ -371,8 +376,8 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 %\subsection{Package defaults}
 % By default, use the |default| style with |empty| content:
-\keyboard@s@default
-\keyboard@c@empty
+\pgfqkeys{/keyboard/style}{default}
+\pgfqkeys{/keyboard/content}{empty}
 
 %\subsection{Helper macros for drawing keys}
 
@@ -501,15 +506,23 @@ One could also extend this package to draw the keypad (as own graphic or integra
 }
 
 %\subsection{End user interface}
-% The commands provided for the package user; most of them expect |key=value| input which is just passed to the internal macros.
+% The high level commands provided for the package user; most of them expect |key=value| input which is just passed to the internal macros.
 
 %! \newcommand{\keyboardset}[1]…
 %! \newcommand{\keyboard}[2]…
 
-%The main command:
-\newcommand*{\drawkeyboard}[1]{%
-  \pgfqkeys{/keyboard}{#1}
+% The main command:
+\newcommand*{\keyboard}[2][]{
+  \pgfqkeys{/keyboard/style}{#1}
+  \pgfqkeys{/keyboard/content}{#2}
   \keyboard@apply
+}
+
+% In v0.1, |\drawkeyboard| was the main command, but it is not longer supported:
+\newcommand*{\drawkeyboard}[1]{%
+  \PackageWarning{keyboard}%
+  {The command drawkeyboard is not longer offered!}%
+  {Use keyboard instead and read the manual!}%
 }
 
 % \end{macrocode}
@@ -529,13 +542,20 @@ One could also extend this package to draw the keypad (as own graphic or integra
 
 \listoffigures
 
-Normal Text: \drawkeyboard{}
+A \keyboard{} included in the normal Text.
 
 \begin{figure}
 \centering
-\drawkeyboard{
+\keyboard[default]{empty}
+\caption{The \texttt{empty} keyboard in the \texttt{default} style.}
+\end{figure}
+
+\begin{figure}
+\centering
+\keyboard[
   rectangularenter=true,
-  smallshift=false,
+  smallshift=false
+]{
   x = q,
   v = w,
   l = e,
@@ -550,7 +570,7 @@ Normal Text: \drawkeyboard{}
 
 \begin{figure}
 \centering
-\drawkeyboard{
+\keyboard[
   basesize = 0.18cm, % in total a little bit smaller
   thickness = 6pt, % much thicker margins!
   textscale = 0.9, % hence smaller text
@@ -558,7 +578,8 @@ Normal Text: \drawkeyboard{}
   drawcolour = purple,
   fillcolour = pink!40,
   rectangularenter=false,
-  smallshift=true,
+  smallshift=true
+]{
   enter = {\fontspec{Linux Biolinum O}\Huge ☺},
   space = {Lost in Space …}
 }
@@ -568,7 +589,7 @@ Normal Text: \drawkeyboard{}
 \begin{figure}
 \centering
 \fontspec{Linux Biolinum O}
-\drawkeyboard{
+\keyboard[
   thickness = 0.6pt,
   basesize = 0.18cm,
   textscale = 1.1,
@@ -579,7 +600,8 @@ Normal Text: \drawkeyboard{}
   homerowhook = \textbf,
   nonneoglyphhook = {\scriptsize\textcolor{black!70}},
   rectangularenter=false,
-  smallshift=true,
+  smallshift=true
+]{
   strgl=Strg,
   osl=OS,
   altl=Alt,
@@ -643,22 +665,23 @@ Normal Text: \drawkeyboard{}
   tii=T2,
   bsp=Backsp
 }
-\drawkeyboard{% “inverted” style suggested by Frank Mayer
+\keyboard[% “inverted” style suggested by Frank Mayer
   textscale = 1.4,
   thickness = 0.8pt,
   color = white,
   drawcolor = black!25,
   fillcolor = black!95,
   nonneoglyphhook = {\scriptsize\textcolor{white!70}}
-}
-\drawkeyboard{% “hackerstyle” modification
+]{}
+
+\keyboard[% “hackerstyle” modification
   color = green!70!black,
   centerhook = \underline,
   homerowhook = \textbf,
   nonneoglyphhook = {\scriptsize\textcolor{green!40!black}},
   rectangularenter=true,
   smallshift=false
-}
+]{}
 \caption{This is a serious keyboard in three different styles.}
 \end{figure}
 

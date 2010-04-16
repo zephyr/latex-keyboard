@@ -3,7 +3,7 @@
 
 ## Purpose
 
-The “keyboard” package provides a single command `\drawkeyboard` to print a special keyboard layout.
+The “keyboard” package provides a single command `\keyboard` to print a special keyboard layout.
 
 ## How to Compile
 
