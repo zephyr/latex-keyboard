@@ -5,7 +5,10 @@
 *.bbl
 *.blg
 *.glo
+*.gls
 *.idx
+*.ilg
+*.ind
 *.lof
 *.log
 *.out
@@ -24,6 +27,3 @@ keyboard-demo.pdf
 
 # Ignore sink folder:
 sink/
-*.gls
-*.ilg
-*.ind
