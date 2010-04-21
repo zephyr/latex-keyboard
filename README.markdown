@@ -15,6 +15,8 @@ To compile everything, just execute the makefile:
 
 The option `--shell-escape` *is needed* here!
 
+Currently, there’s a strange problem with the makefile under TeXLife – please compile by hand instead:
+
 ### Fast by hand
 
 Just type
