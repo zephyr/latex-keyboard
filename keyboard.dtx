@@ -35,7 +35,10 @@ Do not distribute a modified version of this file under the same name.
 \usepackage[inline, visible]{gmdoc-enhance} % provides %! for ›real‹ comments within the implementation.
 \def\marginpartt{\scriptsize\ttfamily}  % needed fix for XeTeX because of problems with the lmodern font.
 \GetFileInfo{keyboard.sty}
+
 \RecordChanges
+\makeindex
+\renewcommand{\hyperindexformat}[2]{} % Bugfix for index creation
 
 \usepackage{
   xltxtra,
