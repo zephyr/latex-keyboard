@@ -94,7 +94,7 @@ While this package satisfies its original purpose\footnote{To provide images of 
 The current naming convention of the keys is based on the Neo keyboard layout, which is (sad but true) unusual for the average user. So we need a better one: Based on qwerty or qwertz? Numerical—one-dimensional (1–40) or two-dimensional (1/1, 1/2, 1/3, …, 2/1, 2/2, …, 4/13)? Maybe Linux scancodes or keysyms? It should be memorizeable, more or less layout-independent, and use short (maybe even equally long?) keys.
 
 \subsection{Generalized hook creation}
-A hook can style a whole bunch of keys simultaneously, which is a powerful concept to avoid redundancy. Currently, there are three hooks (|centerhook|, |homerowhook| and |nonneoglyphhook|), but they are “hard coded”, so there is no possibility to easily create new hooks: one \emph{should} can do somethink like |\newkeybordhook{leftringfinger}{oe,i,v,nii}|.
+A hook can style a whole bunch of keys simultaneously, which is a powerful concept to avoid redundancy. Currently, there are three hooks (|centerhook|, |homerowhook| and |nonneoglyphhook|), but they are “hard coded”, so there is no possibility to easily create new hooks: one \emph{should} can do somethink like |\newkeyboardhook{leftringfinger}{oe,i,v,nii}|.
 
 \subsection{Revised user interface}
 In general, the whole user interface should become more intuitive and the content should be separated from the style. The package should provide some high level commands, but without losing the possibility to change or define everythink by hand. At best, all of this should be combined, for example:
