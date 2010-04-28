@@ -15,8 +15,6 @@ To compile everything, just execute the makefile:
 
 The option `--shell-escape` *is needed* here!
 
-Currently, there’s a strange problem with the makefile under TeX Live – please comment out `\PrintIndex` or compile by hand instead:
-
 ### Fast by hand
 
 Just type
