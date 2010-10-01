@@ -38,7 +38,11 @@ Do not distribute a modified version of this file under the same name.
 
 \RecordChanges
 \makeindex
-\renewcommand{\hyperindexformat}[2]{} % Bugfix for index creation
+
+% Bugfix for index creation with TeX Live:
+\ifdefined\hyperindexformat
+\renewcommand{\hyperindexformat}[2]{}
+\fi
 
 \usepackage{
   xltxtra,
